@@ -1,0 +1,897 @@
+  [1m[35m (194.4ms)[0m  [1m[35mCREATE DATABASE "kaizen_todo_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (83.6ms)[0m  [1m[35mCREATE DATABASE "kaizen_todo_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7524800332615952820)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGoals (20200711070212)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "goals" ("id" bigserial primary key, "title" character varying, "body" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200711070212"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-11 07:02:49.557391"], ["updated_at", "2020-07-11 07:02:49.557391"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7524800332615952820)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/goals" for ::1 at 2020-07-10 21:14:29 -1000
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (3.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 11ms (Views: 2.2ms | ActiveRecord: 6.5ms | Allocations: 1687)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:15:58 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 845)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:16:06 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new goal", "body"=>"testing", "goal"=>{"title"=>"new goal", "body"=>"testing"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (5.5ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new goal"], ["body", "testing"], ["created_at", "2020-07-11 07:16:06.801699"], ["updated_at", "2020-07-11 07:16:06.801699"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 31ms (Views: 1.0ms | ActiveRecord: 17.9ms | Allocations: 5952)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:17:10 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new ", "body"=>"new", "goal"=>{"title"=>"new ", "body"=>"new"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (1.2ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new "], ["body", "new"], ["created_at", "2020-07-11 07:17:10.247837"], ["updated_at", "2020-07-11 07:17:10.247837"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 9ms (Views: 0.6ms | ActiveRecord: 2.5ms | Allocations: 2531)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:17:10 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1070)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:17:26 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.6ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.6ms | Allocations: 1059)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:17:36 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"testing", "body"=>"test", "goal"=>{"title"=>"testing", "body"=>"test"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (0.8ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "testing"], ["body", "test"], ["created_at", "2020-07-11 07:17:36.251745"], ["updated_at", "2020-07-11 07:17:36.251745"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 7ms (Views: 0.6ms | ActiveRecord: 1.4ms | Allocations: 2515)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:17:36 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1193)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:34 -1000
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 7.6ms | ActiveRecord: 7.8ms | Allocations: 5212)
+
+
+Started DELETE "/goals/1" for ::1 at 2020-07-10 21:19:39 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mGoal Load (1.0ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.6ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 14ms (ActiveRecord: 2.6ms | Allocations: 2948)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:39 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 1060)
+
+
+Started DELETE "/goals/2" for ::1 at 2020-07-10 21:19:40 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mGoal Load (0.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.4ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 7ms (ActiveRecord: 2.4ms | Allocations: 2458)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:40 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (1.6ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 1.6ms | Allocations: 945)
+
+
+Started DELETE "/goals/3" for ::1 at 2020-07-10 21:19:40 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.4ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 46ms (ActiveRecord: 5.7ms | Allocations: 2460)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:40 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 829)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:19:45 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new one", "body"=>"new one", "goal"=>{"title"=>"new one", "body"=>"new one"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (8.0ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new one"], ["body", "new one"], ["created_at", "2020-07-11 07:19:45.611799"], ["updated_at", "2020-07-11 07:19:45.611799"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 18ms (Views: 1.3ms | ActiveRecord: 9.2ms | Allocations: 2761)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:45 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 944)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:19:53 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"edit me", "body"=>"edit this", "goal"=>{"title"=>"edit me", "body"=>"edit this"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (9.9ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "edit me"], ["body", "edit this"], ["created_at", "2020-07-11 07:19:53.117929"], ["updated_at", "2020-07-11 07:19:53.117929"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 17ms (Views: 0.6ms | ActiveRecord: 11.6ms | Allocations: 2518)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:19:53 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.5ms | Allocations: 1060)
+
+
+Started PUT "/goals/5" for ::1 at 2020-07-10 21:20:00 -1000
+Processing by GoalsController#update as HTML
+  Parameters: {"id"=>"5", "title"=>"please work", "body"=>"working?", "created_at"=>"2020-07-11T07:19:53.117Z", "updated_at"=>"2020-07-11T07:19:53.117Z", "goal"=>{"id"=>"5", "title"=>"please work", "body"=>"working?", "created_at"=>"2020-07-11T07:19:53.117Z", "updated_at"=>"2020-07-11T07:19:53.117Z"}}
+  [1m[36mGoal Load (0.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+[31mUnpermitted parameters: :id, :created_at, :updated_at[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[36mGoal Update (0.6ms)[0m  [1m[33mUPDATE "goals" SET "title" = $1, "body" = $2, "updated_at" = $3 WHERE "goals"."id" = $4[0m  [["title", "please work"], ["body", "working?"], ["updated_at", "2020-07-11 07:20:00.593695"], ["id", 5]]
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+Completed 200 OK in 9ms (Views: 0.8ms | ActiveRecord: 1.9ms | Allocations: 3182)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:20:00 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:20:03 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.4ms | Allocations: 1062)
+
+
+Started DELETE "/goals/4" for ::1 at 2020-07-10 21:20:06 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.3ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 5ms (ActiveRecord: 1.4ms | Allocations: 2441)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:20:06 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms | Allocations: 944)
+
+
+Started DELETE "/goals/5" for ::1 at 2020-07-10 21:20:07 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.7ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 7ms (ActiveRecord: 2.0ms | Allocations: 2441)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:20:07 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.7ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.7ms | Allocations: 828)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:21:55 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 828)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:21:59 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new one", "body"=>"new one", "goal"=>{"title"=>"new one", "body"=>"new one"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (1.0ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new one"], ["body", "new one"], ["created_at", "2020-07-11 07:21:59.191787"], ["updated_at", "2020-07-11 07:21:59.191787"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 8ms (Views: 0.9ms | ActiveRecord: 1.9ms | Allocations: 2516)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:21:59 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.2ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 944)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:22:56 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 944)
+
+
+Started PUT "/goals/6" for ::1 at 2020-07-10 21:23:46 -1000
+Processing by GoalsController#update as HTML
+  Parameters: {"id"=>"6", "title"=>"new one", "body"=>"new one", "created_at"=>"2020-07-11T07:21:59.191Z", "updated_at"=>"2020-07-11T07:21:59.191Z", "goal"=>{"id"=>"6", "title"=>"new one", "body"=>"new one", "created_at"=>"2020-07-11T07:21:59.191Z", "updated_at"=>"2020-07-11T07:21:59.191Z"}}
+  [1m[36mGoal Load (0.2ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+[31mUnpermitted parameters: :id, :created_at, :updated_at[0m
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 980)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:23:46 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (1.0ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 1.0ms | Allocations: 946)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:23:55 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new one", "body"=>"new one", "goal"=>{"title"=>"new one", "body"=>"new one"}}
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (1.6ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new one"], ["body", "new one"], ["created_at", "2020-07-11 07:23:55.679175"], ["updated_at", "2020-07-11 07:23:55.679175"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (13.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 22ms (Views: 1.2ms | ActiveRecord: 16.2ms | Allocations: 2518)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:23:55 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:24:02 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"delete me", "body"=>"delete me", "goal"=>{"title"=>"delete me", "body"=>"delete me"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (0.5ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "delete me"], ["body", "delete me"], ["created_at", "2020-07-11 07:24:02.562252"], ["updated_at", "2020-07-11 07:24:02.562252"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 9ms (Views: 0.9ms | ActiveRecord: 3.3ms | Allocations: 2516)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:02 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 1176)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:24:09 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"add me", "body"=>"@asdflj", "goal"=>{"title"=>"add me", "body"=>"@asdflj"}}
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (0.6ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "add me"], ["body", "@asdflj"], ["created_at", "2020-07-11 07:24:09.797476"], ["updated_at", "2020-07-11 07:24:09.797476"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 11ms (Views: 0.6ms | ActiveRecord: 6.3ms | Allocations: 2516)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:09 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms | Allocations: 1293)
+
+
+Started DELETE "/goals/8" for ::1 at 2020-07-10 21:24:15 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.4ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 9ms (ActiveRecord: 2.6ms | Allocations: 2444)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:15 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.8ms | Allocations: 1176)
+
+
+Started PUT "/goals/9" for ::1 at 2020-07-10 21:24:24 -1000
+Processing by GoalsController#update as HTML
+  Parameters: {"id"=>"9", "title"=>"changed IT", "body"=>"EDIT SUCCESS!!!", "created_at"=>"2020-07-11T07:24:09.797Z", "updated_at"=>"2020-07-11T07:24:09.797Z", "goal"=>{"id"=>"9", "title"=>"changed IT", "body"=>"EDIT SUCCESS!!!", "created_at"=>"2020-07-11T07:24:09.797Z", "updated_at"=>"2020-07-11T07:24:09.797Z"}}
+  [1m[36mGoal Load (0.2ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+[31mUnpermitted parameters: :id, :created_at, :updated_at[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[36mGoal Update (1.3ms)[0m  [1m[33mUPDATE "goals" SET "title" = $1, "body" = $2, "updated_at" = $3 WHERE "goals"."id" = $4[0m  [["title", "changed IT"], ["body", "EDIT SUCCESS!!!"], ["updated_at", "2020-07-11 07:24:24.951901"], ["id", 9]]
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 2.2ms | Allocations: 3142)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:25 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 1176)
+
+
+Started DELETE "/goals/9" for ::1 at 2020-07-10 21:24:28 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mGoal Load (0.6ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.5ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 8ms (ActiveRecord: 2.0ms | Allocations: 2441)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:28 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (1.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 1.5ms | Allocations: 1060)
+
+
+Started PUT "/goals/7" for ::1 at 2020-07-10 21:24:32 -1000
+Processing by GoalsController#update as HTML
+  Parameters: {"id"=>"7", "title"=>"new one", "body"=>"new one", "created_at"=>"2020-07-11T07:23:55.679Z", "updated_at"=>"2020-07-11T07:23:55.679Z", "goal"=>{"id"=>"7", "title"=>"new one", "body"=>"new one", "created_at"=>"2020-07-11T07:23:55.679Z", "updated_at"=>"2020-07-11T07:23:55.679Z"}}
+  [1m[36mGoal Load (0.2ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+[31mUnpermitted parameters: :id, :created_at, :updated_at[0m
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 978)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:32 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 1062)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:24:47 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"New one", "body"=>"Another new one", "goal"=>{"title"=>"New one", "body"=>"Another new one"}}
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (0.6ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "New one"], ["body", "Another new one"], ["created_at", "2020-07-11 07:24:47.496679"], ["updated_at", "2020-07-11 07:24:47.496679"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 11ms (Views: 0.7ms | ActiveRecord: 6.4ms | Allocations: 2516)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:24:47 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 1176)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:33:08 -1000
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 5.4ms | ActiveRecord: 5.6ms | Allocations: 5212)
+
+
+Started POST "/goals" for ::1 at 2020-07-10 21:33:18 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"added", "body"=>" one more", "goal"=>{"title"=>"added", "body"=>" one more"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (13.8ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "added"], ["body", " one more"], ["created_at", "2020-07-11 07:33:18.316456"], ["updated_at", "2020-07-11 07:33:18.316456"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 22ms (Views: 1.1ms | ActiveRecord: 14.8ms | Allocations: 2796)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:33:18 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1311)
+
+
+Started DELETE "/goals/10" for ::1 at 2020-07-10 21:33:20 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mGoal Load (1.9ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (1.3ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 14ms (ActiveRecord: 4.7ms | Allocations: 2913)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:33:20 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.5ms | Allocations: 1176)
+
+
+Started PUT "/goals/7" for ::1 at 2020-07-10 21:33:25 -1000
+Processing by GoalsController#update as HTML
+  Parameters: {"id"=>"7", "title"=>"changed", "body"=>"YAY", "created_at"=>"2020-07-11T07:23:55.679Z", "updated_at"=>"2020-07-11T07:23:55.679Z", "goal"=>{"id"=>"7", "title"=>"changed", "body"=>"YAY", "created_at"=>"2020-07-11T07:23:55.679Z", "updated_at"=>"2020-07-11T07:23:55.679Z"}}
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+[31mUnpermitted parameters: :id, :created_at, :updated_at[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[36mGoal Update (1.7ms)[0m  [1m[33mUPDATE "goals" SET "title" = $1, "body" = $2, "updated_at" = $3 WHERE "goals"."id" = $4[0m  [["title", "changed"], ["body", "YAY"], ["updated_at", "2020-07-11 07:33:25.064917"], ["id", 7]]
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:29:in `update'
+Completed 200 OK in 47ms (Views: 0.8ms | ActiveRecord: 3.5ms | Allocations: 3204)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:33:25 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 1177)
+
+
+Started DELETE "/goals/7" for ::1 at 2020-07-10 21:33:27 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.3ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 4ms (ActiveRecord: 1.2ms | Allocations: 2441)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:33:27 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:34:43 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.8ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:34:56 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-10 21:35:32 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 04:47:20 -1000
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (5.1ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 33ms (Views: 11.0ms | ActiveRecord: 19.7ms | Allocations: 5096)
+
+
+Started DELETE "/goals/6" for ::1 at 2020-07-11 04:47:24 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (2.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (7.1ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 22ms (ActiveRecord: 11.7ms | Allocations: 2948)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 04:47:24 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 944)
+
+
+Started DELETE "/goals/11" for ::1 at 2020-07-11 04:47:25 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"11"}
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.6ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 11]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 5ms (ActiveRecord: 1.6ms | Allocations: 2458)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 04:47:25 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.8ms | Allocations: 829)
+
+
+Started POST "/goals" for ::1 at 2020-07-11 04:47:34 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"Deployment", "body"=>"Deploy app to Heroku", "goal"=>{"title"=>"Deployment", "body"=>"Deploy app to Heroku"}}
+  [1m[35m (26.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (9.7ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Deployment"], ["body", "Deploy app to Heroku"], ["created_at", "2020-07-11 14:47:34.815881"], ["updated_at", "2020-07-11 14:47:34.815881"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 84ms (Views: 1.2ms | ActiveRecord: 36.8ms | Allocations: 2765)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 04:47:34 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (3.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 3.3ms | Allocations: 962)
+
+
+Started POST "/goals" for ::1 at 2020-07-11 04:48:04 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"README.md", "body"=>"Finish README.md ", "goal"=>{"title"=>"README.md", "body"=>"Finish README.md "}}
+  [1m[35m (13.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (0.4ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "README.md"], ["body", "Finish README.md "], ["created_at", "2020-07-11 14:48:04.505181"], ["updated_at", "2020-07-11 14:48:04.505181"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 18ms (Views: 0.4ms | ActiveRecord: 14.3ms | Allocations: 2518)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 04:48:04 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:03:09 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.8ms | Allocations: 1120)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:03:33 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (1.0ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 1.0ms | Allocations: 1060)
+
+
+Started GET "/" for ::1 at 2020-07-11 06:34:16 -1000
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Library/Ruby/Gems/2.6.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Library/Ruby/Gems/2.6.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 15.4ms | Allocations: 478)
+Completed 200 OK in 43ms (Views: 35.9ms | ActiveRecord: 0.0ms | Allocations: 2618)
+
+
+Started GET "/favicon.ico" for ::1 at 2020-07-11 06:34:17 -1000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/goals" for ::1 at 2020-07-11 06:42:57 -1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.7ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 7.5ms | ActiveRecord: 7.6ms | Allocations: 5096)
+
+
+Started POST "/goals" for ::1 at 2020-07-11 06:43:12 -1000
+Processing by GoalsController#create as HTML
+  Parameters: {"title"=>"new goal", "body"=>"Goal", "goal"=>{"title"=>"new goal", "body"=>"Goal"}}
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[36mGoal Create (7.9ms)[0m  [1m[32mINSERT INTO "goals" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "new goal"], ["body", "Goal"], ["created_at", "2020-07-11 16:43:12.084081"], ["updated_at", "2020-07-11 16:43:12.084081"]]
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+  [1m[35m (17.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:20:in `create'
+Completed 201 Created in 35ms (Views: 1.8ms | ActiveRecord: 27.0ms | Allocations: 2796)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:43:12 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (8.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 13ms (Views: 3.6ms | ActiveRecord: 8.5ms | Allocations: 1194)
+
+
+Started DELETE "/goals/14" for ::1 at 2020-07-11 06:43:14 -1000
+Processing by GoalsController#destroy as */*
+  Parameters: {"id"=>"14"}
+  [1m[36mGoal Load (0.6ms)[0m  [1m[34mSELECT "goals".* FROM "goals" WHERE "goals"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/goals_controller.rb:44:in `set_goal'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[36mGoal Destroy (0.4ms)[0m  [1m[31mDELETE FROM "goals" WHERE "goals"."id" = $1[0m  [["id", 14]]
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/goals_controller.rb:38:in `destroy'
+Completed 204 No Content in 14ms (ActiveRecord: 1.9ms | Allocations: 4069)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:43:14 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:49:43 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (8.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 11ms (Views: 2.7ms | ActiveRecord: 8.4ms | Allocations: 1131)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:50:37 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:50:53 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 1062)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:51:21 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:56:22 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:56:57 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.7ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.7ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:57:11 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:57:35 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:57:46 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:58:03 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (1.8ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 1.8ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:58:49 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (6.5ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 2.5ms | ActiveRecord: 6.5ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 06:59:26 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.6ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.6ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:00:14 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:00:24 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.7ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.7ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:00:55 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:01:00 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.4ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:01:10 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
+Started GET "/goals" for ::1 at 2020-07-11 07:01:12 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 1060)
+
+
