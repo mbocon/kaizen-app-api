@@ -7031,3 +7031,51 @@ Processing by GoalsController#index as */*
 Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 1.5ms | Allocations: 1327)
 
 
+Started POST "/users/login" for ::1 at 2020-07-21 15:24:04 -1000
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"Mike", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Mike"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 224ms (Views: 0.4ms | ActiveRecord: 11.8ms | Allocations: 5163)
+
+
+Started GET "/goals" for ::1 at 2020-07-21 15:24:04 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (3.3ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 22ms (Views: 9.0ms | ActiveRecord: 8.9ms | Allocations: 6023)
+
+
+Started POST "/users/login" for ::1 at 2020-07-21 15:26:50 -1000
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"mik", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "mik"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 14ms (Views: 1.6ms | ActiveRecord: 3.7ms | Allocations: 1703)
+
+
+Started POST "/users/login" for ::1 at 2020-07-21 15:26:56 -1000
+Processing by UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"Jill", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jill"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 231ms (Views: 1.9ms | ActiveRecord: 6.7ms | Allocations: 3919)
+
+
+Started POST "/users/login" for ::1 at 2020-07-21 15:27:01 -1000
+Processing by UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"Jill", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jill"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 209ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 976)
+
+
+Started GET "/goals" for ::1 at 2020-07-21 15:27:02 -1000
+Processing by GoalsController#index as */*
+  [1m[36mGoal Load (0.9ms)[0m  [1m[34mSELECT "goals".* FROM "goals"[0m
+  ↳ app/controllers/goals_controller.rb:8:in `index'
+Completed 200 OK in 46ms (Views: 29.6ms | ActiveRecord: 8.3ms | Allocations: 6062)
+
+
