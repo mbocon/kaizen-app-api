@@ -7079,3 +7079,12 @@ Processing by GoalsController#index as */*
 Completed 200 OK in 46ms (Views: 29.6ms | ActiveRecord: 8.3ms | Allocations: 6062)
 
 
+Started POST "/users/login" for ::1 at 2020-07-22 15:06:47 -1000
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as */*
+  Parameters: {"user"=>{"username"=>"Bob", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Bob"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 317ms (Views: 0.6ms | ActiveRecord: 37.5ms | Allocations: 5161)
+
+
